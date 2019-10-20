@@ -1,0 +1,23 @@
+library(ggplot2)
+library(Hmisc)
+library(tidyverse)
+
+
+#read in csv
+yes2018violin <- read.table("Distance2017nocalfViolin2.csv", header = TRUE, sep=',')
+
+
+#save csv as data frame
+yes2018violin3 <- as.data.frame(yes2018violin)
+
+
+#plot the data as a violin plot
+ggplot(yes2018violin3, aes(x = ï..ID, y = DIST)) + 
+  geom_violin(trim=FALSE) + 
+  scale_y_log10()+
+  stat_summary(fun.data="mean_sdl", geom="pointrange") +
+  labs(title="Mean Distance Walked Per Day (metres) 2017 - No Calf", x="Reindeer ID Group", y="Mean Distance Walked Per Day (metres)") +
+  theme_grey()
+  
+
+
